@@ -19,8 +19,6 @@ public class MemberService {
     //@Autowired   //필드인젝션
     private final MemberRepository memberRepository;
 
-
-
     /**
      * 회원 가입
      * 중복회원 검증로직 존재
@@ -41,7 +39,6 @@ public class MemberService {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
     }
-
 
     /**
      * 회원 전체 조회
