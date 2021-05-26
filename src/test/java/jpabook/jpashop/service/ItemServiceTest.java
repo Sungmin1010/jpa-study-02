@@ -34,10 +34,14 @@ public class ItemServiceTest {
         book.setStockQuantity(10);
 
         //when
+        System.out.println("===========1==============");
         itemService.saveItem(book);
+        System.out.println("============2=============");
         Item findItem = itemService.findOne(book.getId());
+        System.out.println("============3=============");
         //then
         em.flush();
+        System.out.println("===========4==============");
         assertEquals(book, findItem);
 
 
@@ -64,7 +68,7 @@ public class ItemServiceTest {
     }
 
     @Test
-    //@Rollback(false)
+    @Rollback(false)
     public void 상품_재고_증가() throws Exception {
         //given
         Book book = new Book();
@@ -86,5 +90,34 @@ public class ItemServiceTest {
 
     }
 
+    @Test
+    @Rollback(false)
+    public void 상품여러개등록() throws Exception {
+        //given
+        Book book = new Book();
+        book.setName("JPA BOOK");
+        book.setPrice(10000);
+        book.setAuthor("jenny");
+        book.setStockQuantity(10);
+
+        Book book2 = new Book();
+        book2.setName("srping BOOK");
+        book2.setStockQuantity(1);
+        book2.setPrice(100);
+        book2.setAuthor("jenny");
+
+        //when
+        System.out.println("===============1==========");
+        em.persist(book);
+        System.out.println("==============2===========");
+        em.persist(book2);
+        System.out.println("==============3===========");
+
+        //then
+        em.flush();
+        System.out.println("==============flush===========");
+        assertEquals(2, itemService.findItems().size());
+
+    }
 
 }
