@@ -50,7 +50,7 @@ public class OrderItem {
     }
 
     /**
-     * 조회 로직
+     * 조회 로직 (Order 엔티티 전체 주문 가격 조회시 사용)
      */
     public int getTotalPrice(){
         return getOderPrice() * getCount();
